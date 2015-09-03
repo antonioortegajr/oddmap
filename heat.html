@@ -44,7 +44,6 @@
             //initialize an array which would contain the coordinates
             var testData={}
             var data = [];
-            var sample = [];
             testData.max = 10;
             $.each(allDatesData.features,function(index,value){
                 var obj = {};
@@ -56,7 +55,6 @@
                 //getlongitude as variable
                 var l2 = value.geometry.coordinates[0];
                 var latlng = new L.latLng(l1, l2);
-                sample.push(latlng);
                 //heatmap.store.addDataPoint(new L.latLng(value.geometry.coordinates));
                 obj.lat = latlng.lat;
                 obj.lon = latlng.lng;
