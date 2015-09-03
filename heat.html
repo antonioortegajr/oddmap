@@ -9,8 +9,8 @@
         <script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet-src.js"></script>
          <script type="text/javascript" src="heatmap.js"></script>
         <script type="text/javascript" src="heatmap-leaflet.js"></script>
-       
-        
+
+
          <style>
             #map{width:1000px;height:1000px;}
         </style>
@@ -34,7 +34,7 @@
                 $.ajax({
                     'async': false,
                     'global': false,
-                    'url': "odd_nodes.geojson",
+                    'url': "https://raw.githubusercontent.com/antonioortegajr/breweries-in-portland/master/map.geojson",
                     'dataType': "json",
                     'success': function (data) {
                         allDatesData = data;
@@ -45,37 +45,45 @@
             //initialize an array which would contain the coordinates
             var testData={}
             var data = [];
+            var sample = [];
             testData.max = 10;
             $.each(allDatesData.features,function(index,value){
                 var obj = {};
                 // debugger;
-                var latlng = new L.latLng(value.geometry.coordinates);
-                // heatmap.store.addDataPoint(new L.latLng(value.geometry.coordinates));
-                obj.lat = latlng.lng;
-                obj.lon = latlng.lat;
+                //in your geojson file latitude is first and longitude is second
+                //if for some reason these are swtich adjust the variable keys below
+                //get latitude as variable
+                var l1 = value.geometry.coordinates[1];
+                //getlongitude as variable
+                var l2 = value.geometry.coordinates[0];
+                var latlng = new L.latLng(l1, l2);
+                sample.push(latlng);
+                //heatmap.store.addDataPoint(new L.latLng(value.geometry.coordinates));
+                obj.lat = latlng.lat;
+                obj.lon = latlng.lng;
                 obj.value = 1;
                 // console.log(heatmapLayer);
                 // heatmapLayer.store.addDataPoint(obj.lon,obj.lat);
                 // debugger;
                 data.push(obj);
-                
+
             });
             testData.data = data;
             console.log(testData);
-            
+
             var map = new L.Map('map', {
-                center: new L.LatLng(28.425,84.435),
+                center: new L.LatLng(45.534776927454,-122.6682972908),
                 zoom: 7,
                 layers: new L.TileLayer('https://a.tiles.mapbox.com/v3/poshan.hc1eo89i/{z}/{x}/{y}.png')
             });
-            
 
-            
- 
+
+
+
             heatmapLayer.addData(testData.data);
-            
+
             heatmapLayer.addTo(map);
-            
+
             var overlayMaps = {
                 'Heatmap': heatmapLayer
             };
@@ -93,7 +101,7 @@
             // );
 
 
-        
+
     </script>
   </body>
 </html>
