@@ -9,8 +9,6 @@
         <script src="http://cdn.leafletjs.com/leaflet-0.4.4/leaflet-src.js"></script>
          <script type="text/javascript" src="heatmap.js"></script>
         <script type="text/javascript" src="heatmap-leaflet.js"></script>
-
-
          <style>
             #map{width:1000px;height:1000px;}
         </style>
@@ -63,7 +61,6 @@
                 // heatmapLayer.store.addDataPoint(obj.lon,obj.lat);
                 // debugger;
                 data.push(obj);
-
             });
             testData.data = data;
             console.log(testData);
@@ -73,9 +70,6 @@
                 zoom: 7,
                 layers: new L.TileLayer('https://a.tiles.mapbox.com/v3/poshan.hc1eo89i/{z}/{x}/{y}.png')
             });
-
-
-
 
             heatmapLayer.addData(testData.data);
 
@@ -96,9 +90,6 @@
             //         maxZoom: 18
             //     }
             // );
-
-
-
     </script>
   </body>
 </html>
