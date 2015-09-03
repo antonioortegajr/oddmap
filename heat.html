@@ -32,7 +32,8 @@
                 $.ajax({
                     'async': false,
                     'global': false,
-                    'url': "odd_nodes.geojson': "json",
+                    'url': "odd_nodes.geojson",
+                    'dataType': "json",
                     'success': function (data) {
                         allDatesData = data;
                     }
